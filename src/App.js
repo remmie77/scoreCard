@@ -9,7 +9,7 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import UserPage from './components/UserPage/UserPage';
+import CoursePage from './components/CoursePage/CoursePage.js';
 import InfoPage from './components/InfoPage/InfoPage';
 
 import './styles/main.css';
@@ -29,8 +29,8 @@ const App = () => (
           component={RegisterPage}
         />
         <Route
-          path="/user"
-          component={UserPage}
+          path="/course"
+          component={CoursePage}
         />
         <Route
           path="/info"
