@@ -54,7 +54,13 @@ input[type="submit"] {
   background-color: #af8137;
   width: 100%;
   border-radius: 0px;
+  display: flex;
+  justify-content: center;
 }
+
+/* .navbar.li {
+    display: inline-block;
+} */
 
 ul {
     list-style-type: none;
