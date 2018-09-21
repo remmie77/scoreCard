@@ -10,7 +10,13 @@ import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import CoursePage from './components/CoursePage/CoursePage.js';
-import InfoPage from './components/InfoPage/InfoPage';
+import CreatePage from './components/CreatePage/CreatePage.js'
+import PlayerCountPage from './components/PlayerCountPage/PlayerCountPage.js';
+import RulesPage from './components/RulesPage/RulesPage.js';
+import TipsPage from './components/TipsPage/TipsPage.js';
+import ScoreCardPage from './components/ScoreCardPage/ScoreCardPage.js';
+
+
 
 import './styles/main.css';
 
@@ -33,8 +39,24 @@ const App = () => (
           component={CoursePage}
         />
         <Route
-          path="/info"
-          component={InfoPage}
+          path="/createCourse"
+          component={CreatePage}
+        />
+        <Route
+          path="/playerCount"
+          component={PlayerCountPage}
+        />
+        <Route
+          path="/rules"
+          component={RulesPage}
+        />
+        <Route
+          path="/tips"
+          component={TipsPage}
+        />
+        <Route
+          path="/score"
+          component={ScoreCardPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
