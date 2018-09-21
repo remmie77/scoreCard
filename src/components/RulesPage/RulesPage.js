@@ -35,17 +35,12 @@ class RulesPage extends Component {
           <h1
             id="welcome"
           >
-            Hey Fucker, { this.props.user.userName }!
+            Hey, { this.props.user.userName }!
           </h1>
           <h2>
-              THESE ARE THE DAMNED RULES!!!
+              THESE ARE THE RULES!!!
           </h2>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
         </div>
       );
     }

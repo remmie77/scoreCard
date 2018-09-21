@@ -9,7 +9,7 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
   user: state.user,
-  coursesArray: state.course, //this.props.coursesArray
+  course: state.course, //this.props.course
 });
 
 class CoursePage extends Component {
@@ -32,24 +32,31 @@ class CoursePage extends Component {
     this.props.history.push('createCourse')
   }
 
-  
+
 
   getMyCourses = () => {
     console.log('in getMyCourses');
     Axios({
-        method: 'GET',
-        url: '/api/score',
+      method: 'GET',
+      url: '/api/score',
     }).then((response) => {
-        console.log('back from server with: ', response.data);
-        this.props.dispatch({
-            payload: response.data,
-            type: 'DISPLAY_COURSES',
-        });
+      console.log('back from server with: ', response.data);
+      this.props.dispatch({
+        payload: response.data,
+        type: 'DISPLAY_COURSES',
+      });
     }).catch((error) => {
-        console.log('error: ', error);
-        alert('there was an error getting the courses');
+      console.log('error: ', error);
+      alert('there was an error getting the courses');
     })
-}
+  }
+
+  startPlaying = (course) => (event) => {
+    console.log(course);
+    const action = {type: 'START_PLAYING', payload: course};
+    this.props.dispatch(action);
+    this.props.history.push('/score');
+  }
 
   render() {
     let content = null;
@@ -60,14 +67,9 @@ class CoursePage extends Component {
           <h1
             id="welcome"
           >
-            Welcome, { this.props.user.userName }!
+            Welcome, {this.props.user.userName}!
           </h1>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
         </div>
       );
     }
@@ -75,13 +77,13 @@ class CoursePage extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        {content}
         <ul>
-          {this.props.coursesArray.map((course, i) => {
-            return(
-              <li key={i}>{course.name} {course.hole_quantity}</li>
+          {this.props.course.map((course, i) => {
+            return (
+              <li key={i}>{course.name} {course.hole_quantity} <button onClick={this.startPlaying(course)}>Play</button></li>
             )
-          }) }
+          })}
           <li><button
             onClick={this.goToCreateCourse}
           >

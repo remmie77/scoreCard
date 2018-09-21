@@ -38,11 +38,6 @@ class TipsPage extends Component {
             I got a tip for you, { this.props.user.userName }!
           </h1>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
         </div>
       );
     }

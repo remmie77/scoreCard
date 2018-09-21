@@ -9,6 +9,7 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
   user: state.user,
+  playerOne: state.playerOne,
 });
 
 class ScoreCardPage extends Component {
@@ -35,14 +36,10 @@ class ScoreCardPage extends Component {
           <h1
             id="welcome"
           >
-            Wow your score is kinda high, { this.props.user.userName }!
+            Score Card
           </h1>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
+          {JSON.stringify(this.props.playerOne)}
         </div>
       );
     }
