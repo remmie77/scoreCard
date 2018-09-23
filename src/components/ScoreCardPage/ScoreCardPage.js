@@ -47,11 +47,25 @@ class ScoreCardPage extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        {content}
+        <ul className="courseList">
+          {this.props.playerOne.map((hole, i) => {
+            return (
+              <li key={i}>HOLE: {hole.hole}<br />
+                P1 SCORE:<br />
+                <button className="decrementBTN">-</button>
+                {hole.score}
+                <button className="incrementBTN">+</button><br />
+                <button className="submitBTN">ADD SCORE(S)</button></li>
+
+            )
+          })}
+        </ul>
       </div>
     );
   }
 }
+// onClick={this.incrementScore(course)}
 
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(ScoreCardPage);

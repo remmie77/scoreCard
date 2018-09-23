@@ -35,7 +35,7 @@ class PlayerCountPage extends Component {
           <h1
             id="welcome"
           >
-            Hey Fucker, { this.props.user.userName }!
+            Hey, { this.props.user.userName }!
           </h1>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
         </div>

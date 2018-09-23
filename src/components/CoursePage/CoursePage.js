@@ -78,13 +78,15 @@ class CoursePage extends Component {
       <div>
         <Nav />
         {content}
-        <ul>
+        <ul className="courseList">
           {this.props.course.map((course, i) => {
             return (
-              <li key={i}>{course.name} {course.hole_quantity} <button onClick={this.startPlaying(course)}>Play</button></li>
+              <li key={i}>{course.name} {course.hole_quantity} 
+              <button onClick={this.startPlaying(course)}>Play</button></li>
             )
           })}
           <li><button
+            class="course"
             onClick={this.goToCreateCourse}
           >
             CREATE A COURSE
