@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Nav from '../Nav/Nav';
-
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
@@ -10,6 +8,7 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 const mapStateToProps = state => ({
   user: state.user,
   playerOne: state.playerOne,
+  playerTwo: state.playerTwo,
 });
 
 class ScoreCardPage extends Component {
@@ -27,6 +26,20 @@ class ScoreCardPage extends Component {
     this.props.dispatch(triggerLogout());
   }
 
+  handleIncrementScoreP1 = (event) => {
+    console.log('YOU KNOW IT', this.state);
+    event.preventDefault();
+    const action = { type: 'INCREMENT_P1_HOLE', payload: this.state }
+    this.props.dispatch(action);
+  }
+
+  handleDecrementScoreP1 = (event) => {
+    console.log('YOU DON\'T KNOW IT', this.state);
+    // event.preventDefault();
+    // const action = { type: 'INCREMENT_P1_HOLE', payload: this.state }
+    // this.props.dispatch(action);
+  }
+
   render() {
     let content = null;
 
@@ -39,7 +52,7 @@ class ScoreCardPage extends Component {
             Score Card
           </h1>
           {/* <p>Your ID is: {this.props.user.id}</p> */}
-          {JSON.stringify(this.props.playerOne)}
+          {/* {JSON.stringify(this.props.playerOne)} */}
         </div>
       );
     }
@@ -53,11 +66,23 @@ class ScoreCardPage extends Component {
             return (
               <li key={i}>HOLE: {hole.hole}<br />
                 P1 SCORE:<br />
-                <button className="decrementBTN">-</button>
+                <button className="decrementBTN"
+                  onClick={this.handleDecrementScore}
+                >
+                  -
+                </button>
                 {hole.score}
-                <button className="incrementBTN">+</button><br />
-                <button className="submitBTN">ADD SCORE(S)</button></li>
-
+                <button className="incrementBTN"
+                  onClick={this.handleIncrementScore}
+                >
+                  +
+                </button><br />
+                <button type="submit"
+                  className="submitBTN"
+                  onClick={this.handleSubmit}>
+                  ADD SCORE(S)
+                        </button>
+              </li>
             )
           })}
         </ul>

@@ -9,11 +9,13 @@ const scores = (state = [], action) => {
     }
     else if (action.type === 'INCREMENT_P1_HOLE') {
         // filter the array and increment the value for the hole in the payload
+        action.payload.filter(score => score.score ++);
         return state;
     }
     else if (action.type === 'DECREMENT_P1_HOLE') {
         // filter the array and decrement the value for the hole in the payload
-        return state;
+        action.payload.filter(score => score.score --);
+        return state - 1;
     }
     else {
         return state;
