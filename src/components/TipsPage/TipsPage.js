@@ -50,7 +50,7 @@ class TipsPage extends Component {
         <Nav />
         {content}
         <h3>
-          Before You Throw
+          BEFORE YOU THROW
         </h3>
         <p>
           <b>First, assess the hole.</b> Be observant and run down a mental checklist, then ask yourself about the hole. What does the lay of the land look like? Is it an uphill or downhill shot? Are there any obstacles or gaps that might alter wind currents? Look further into the hole for variations or tendencies in the wind. Pick the disc you want for the hole and imagine the complete flight and then factor in wind effects. Pick a spot where you anticipate your disc landing and consider what it will do after hitting the ground. Does it need to land short? Find the aiming point.
@@ -66,6 +66,27 @@ class TipsPage extends Component {
         </p>
         <p>
           <b>As you play,</b> typically you will start and finish your round at approximately the same place. To do that, you will throw into, away from, and across the wind. The greater variety of angles you are forced to play, the more discs with different flight characteristics you will need. OK, you don't need them, but if you can tailor the normal flight of your disc to each shot, you will be much more effective.
+        </p>
+        <h3>
+          HEADWINDS AND TAILWINDS
+        </h3>
+        <p>
+          <b>Try to plan each shot to minimize the chances of unwanted air.</b> This works differently, and is dependent upon, which of the four main directions the wind is coming from (keep in mind that these tips are written by a right-hander, so you lefties will need to switch the right to left and left to right instructions.) Let's start with the easier directions; tailwinds and headwinds. A tailwind will help carry a disc forward. It will also make a disc behave as if it were more overstable. This is because the stability of a disc is directly related to the speed of the air passing across it. In other words, the disc thinks it's going slower in a tailwind than it really is. The only drawback to a tailwind is the loss of lift (not to be confused with forward progress). With a little higher release point, exceptionally long throws are possible.
+        </p>
+        <p>
+          <b>A headwind plays exactly the opposite.</b> A headwind will make a disc less stable, and will create less carry by pushing against your disc. A headwind also tends to lift the disc, so a lower point of release is necessary.
+        </p>
+        <h3>
+          CROSSWINDS   
+        </h3>
+        <p>
+          <b>Right to left crosswinds:</b> Anhyzers drop hard and can catch an edge and roll. Hyzers lift and carry more than expected. Use the flight pattern of your disc to counteract the unwanted effects while watching out for the changes that occur as your throw nears completion. For example, throw an overstable disc with an anhyzer that turns right and stays low, then ends up with a hard left turn, which will rise. An understable disc thrown with a hyzer turns left and rises until it turns over (if it turns over), then drops and tails right. The disc will want to go left with the wind and spin unless forced to go otherwise. For distance, try a slightly less stable disc with a slight hyzer.
+        </p>
+        <p>
+          <b>Left to right crosswinds:</b> Hyzers drop while anhyzers lift. Because of the spin a righty generates, it becomes easier to skip as the front edge will be rising into the wind after being driven into the ground by the wind moving across the top of the disc.
+        </p>
+        <p>
+          <b>An unstable disc with an anhyzer release</b> will be lifted up and carried right. Find the correct combination of stability and release angle for good distance drives.
         </p>
       </div>
     );
