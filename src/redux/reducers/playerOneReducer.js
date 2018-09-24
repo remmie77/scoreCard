@@ -9,7 +9,6 @@ const scores = (state = [], action) => {
     }
     else if (action.type === 'INCREMENT_P1_HOLE') {
         // map the array and increment the value for the hole in the payload
-        
         const result = state.map(currentHole => {
             if(currentHole.hole === action.payload.hole) {
                 return {...currentHole, score: currentHole.score + 1};
@@ -22,8 +21,15 @@ const scores = (state = [], action) => {
     }
     else if (action.type === 'DECREMENT_P1_HOLE') {
         // map the array and decrement the value for the hole in the payload
-        action.payload.filter(score => score.score --);
-        return state - 1;
+        const result = state.map(currentHole => {
+            if(currentHole.hole === action.payload.hole) {
+                return {...currentHole, score: currentHole.score - 1};
+            }
+            else {
+                return currentHole;
+            }
+        });
+        return result;
     }
     else {
         return state;

@@ -27,15 +27,13 @@ class ScoreCardPage extends Component {
   }
 
   handleIncrementScoreP1 = (hole) => (event) => {
-    console.log('YOU KNOW IT', this.state);
-    event.preventDefault();
+    console.log('YOU KNOW IT', hole);
     const action = { type: 'INCREMENT_P1_HOLE', payload: hole }
     this.props.dispatch(action);
   }
 
   handleDecrementScoreP1 = (hole) => (event) => {
     console.log('YOU DON\'T KNOW IT', hole );
-    // event.preventDefault();
     const action = { type: 'DECREMENT_P1_HOLE', payload: hole }
     this.props.dispatch(action);
   }
