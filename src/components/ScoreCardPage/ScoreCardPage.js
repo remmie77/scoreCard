@@ -26,18 +26,18 @@ class ScoreCardPage extends Component {
     this.props.dispatch(triggerLogout());
   }
 
-  handleIncrementScoreP1 = (event) => {
+  handleIncrementScoreP1 = (hole) => (event) => {
     console.log('YOU KNOW IT', this.state);
     event.preventDefault();
-    const action = { type: 'INCREMENT_P1_HOLE', payload: this.state }
+    const action = { type: 'INCREMENT_P1_HOLE', payload: hole }
     this.props.dispatch(action);
   }
 
-  handleDecrementScoreP1 = (event) => {
-    console.log('YOU DON\'T KNOW IT', this.state);
+  handleDecrementScoreP1 = (hole) => (event) => {
+    console.log('YOU DON\'T KNOW IT', hole );
     // event.preventDefault();
-    // const action = { type: 'INCREMENT_P1_HOLE', payload: this.state }
-    // this.props.dispatch(action);
+    const action = { type: 'DECREMENT_P1_HOLE', payload: hole }
+    this.props.dispatch(action);
   }
 
   render() {
@@ -67,13 +67,13 @@ class ScoreCardPage extends Component {
               <li key={i}>HOLE: {hole.hole}<br />
                 P1 SCORE:<br />
                 <button className="decrementBTN"
-                  onClick={this.handleDecrementScore}
+                  onClick={this.handleDecrementScoreP1(hole)}
                 >
                   -
                 </button>
                 {hole.score}
                 <button className="incrementBTN"
-                  onClick={this.handleIncrementScore}
+                  onClick={this.handleIncrementScoreP1(hole)}
                 >
                   +
                 </button><br />
