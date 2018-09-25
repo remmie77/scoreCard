@@ -1,5 +1,6 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
 }
 
 .instructions h1 {
@@ -124,4 +125,15 @@ li a:hover {
 
 .submitBTN {
     font-size: 27px;
+}
+
+.submitScoresBTN {
+    font-size: 27px;
+    margin-top: 20px;
+}
+
+.scoreInputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

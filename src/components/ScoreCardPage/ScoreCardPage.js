@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import Axios from 'axios';
 
 
 const mapStateToProps = state => ({
@@ -33,10 +34,34 @@ class ScoreCardPage extends Component {
   }
 
   handleDecrementScoreP1 = (hole) => (event) => {
-    console.log('YOU DON\'T KNOW IT', hole );
+    console.log('YOU DON\'T KNOW IT', hole);
     const action = { type: 'DECREMENT_P1_HOLE', payload: hole }
     this.props.dispatch(action);
   }
+
+  handleIncrementScoreP2 = (hole) => (event) => {
+    console.log('WOW', hole);
+    const action = { type: 'INCREMENT_P2_HOLE', payload: hole }
+    this.props.dispatch(action);
+  }
+
+  handleDecrementScoreP2 = (hole) => (event) => {
+    console.log('YOU KNOW IT', hole);
+    const action = { type: 'INCREMENT_P2_HOLE', payload: hole }
+    this.props.dispatch(action);
+  }
+
+  // sendMyScores = () => {
+  //   console.log('in send my scores');
+  //   Axios({
+  //     method: 'POST',
+  //     url: '/api/score/p1Score',
+  //     data: this.props.playerOne
+  //   }).then((response) => {
+  //     console.log(response.data);
+  //     //Axios post to round
+  //   })
+  // }
 
   render() {
     let content = null;
@@ -59,31 +84,35 @@ class ScoreCardPage extends Component {
       <div>
         <Nav />
         {content}
-        <ul className="courseList">
-          {this.props.playerOne.map((hole, i) => {
-            return (
-              <li key={i}>HOLE: {hole.hole}<br />
-                P1 SCORE:<br />
-                <button className="decrementBTN"
-                  onClick={this.handleDecrementScoreP1(hole)}
-                >
-                  -
+        <div className="scoreInputsContainer">
+          <ul className="courseList">
+            {this.props.playerOne.map((hole, i) => {
+              return (
+                <li key={i}>HOLE: {hole.hole}<br />
+                  P1 SCORE:<br />
+                  <button className="decrementBTN"
+                    onClick={this.handleDecrementScoreP1(hole)}
+                  >
+                    -
                 </button>
-                {hole.score}
-                <button className="incrementBTN"
-                  onClick={this.handleIncrementScoreP1(hole)}
-                >
-                  +
+                  {hole.score}
+                  <button className="incrementBTN"
+                    onClick={this.handleIncrementScoreP1(hole)}
+                  >
+                    +
                 </button><br />
-                <button type="submit"
-                  className="submitBTN"
-                  onClick={this.handleSubmit}>
-                  ADD SCORE(S)
-                        </button>
-              </li>
-            )
-          })}
-        </ul>
+                </li>
+              )
+            })}
+          </ul>
+          <div>
+            <button type="submit"
+              className="submitScoresBTN"
+              onClick={this.handleSubmit}>
+              ADD SCORE(S)
+          </button>
+          </div>
+        </div>
       </div>
     );
   }
