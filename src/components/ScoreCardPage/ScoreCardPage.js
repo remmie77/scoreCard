@@ -53,18 +53,16 @@ class ScoreCardPage extends Component {
 
   handleFinalMatchScoreSubmit = () => {
     console.log('in send my scores');
-
     let totalScore = 0;
-    this.props.playerOne.map((hole) => {
+    this.props.playerOne.scores.map((hole) => {
       totalScore += hole.score;
     })
-    console.log(totalScore);
-    const action = { type: 'ADD_SCORES' }
-    this.props.dispatch(action);
+    let roundPlayed = {my_score: totalScore, course_id: this.props.playerOne.course_id }
+    console.log(roundPlayed);
     Axios({
       method: 'POST',
       url: '/api/score/p1Score',
-      data: totalScore
+      data: roundPlayed
     }).then((response) => {
       console.log(response.data);
       this.props.history.push('/tally');
@@ -82,8 +80,8 @@ class ScoreCardPage extends Component {
           >
             Score Card
           </h1>
-          {/* <p>Your ID is: {this.props.user.id}</p> */}
-          {/* {JSON.stringify(this.props.playerOne)} */}
+          {JSON.stringify(this.props.playerOne)}
+          {JSON.stringify(this.props.playerOne.name)}
         </div>
       );
     }
@@ -94,7 +92,7 @@ class ScoreCardPage extends Component {
         {content}
         <div className="scoreInputsContainer">
           <ul className="courseList">
-            {this.props.playerOne.map((hole, i) => {
+            {this.props.playerOne.scores.map((hole, i) => {
               return (
                 <li key={i}>HOLE: {hole.hole}<br />
                   P1 SCORE:<br />

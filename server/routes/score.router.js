@@ -45,12 +45,12 @@ router.post('/', function (req, res) {
 });
 
 router.post('/p1Score', function (req, res) {
-    const score1ToAdd = req.body; // This the data we sent
+    const p1ScoreToAdd = req.body; // This the data we sent
     console.log('In POST route - p1ScoreToAdd:', p1ScoreToAdd); // Has a name, and hole quantity
-    const query = 'INSERT INTO "round" ("name", "user_id", "my_score") VALUES ($1, $2, $3);';
+    const query = 'INSERT INTO "round" ("course_id", "user_id", "my_score") VALUES ($1, $2, $3);';
     // $ with index (e.g. $1) will help improve the security of your db
     // Avoids SQL injection -- see bobby drop table comic
-    pool.query(query, [p1ScoreToAdd.name, req.user.id, p1ScoreToAdd.my_score]).then(() => {
+    pool.query(query, [p1ScoreToAdd.course_id, req.user.id, p1ScoreToAdd.my_score]).then(() => {
         res.sendStatus(201);
     }).catch((error) => {
         console.log('Error in POST', error);

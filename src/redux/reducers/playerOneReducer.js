@@ -1,15 +1,23 @@
+const initialState = {
+    course_id: 0,
+    scores: []
+}
 
-const scores = (state = [], action) => {
+const scores = (state = initialState, action) => {
     if (action.type === 'START_PLAYING') {
         const initialData = [];
         for(let i = 1; i <= action.payload.hole_quantity; i++) {
             initialData.push({hole: i, score: 0})
         }
-        return initialData;
+        let newState = {
+            course_id: action.payload.id,
+            scores: initialData
+        }
+        return newState;
     }
     else if (action.type === 'INCREMENT_P1_HOLE') {
         // map the array and increment the value for the hole in the payload
-        const result = state.map(currentHole => {
+        const result = state.scores.map(currentHole => {
             if(currentHole.hole === action.payload.hole) {
                 return {...currentHole, score: currentHole.score + 1};
             }
@@ -17,11 +25,11 @@ const scores = (state = [], action) => {
                 return currentHole;
             }
         });
-        return result;
+        return {...state, scores: result};
     }
     else if (action.type === 'DECREMENT_P1_HOLE') {
         // map the array and decrement the value for the hole in the payload
-        const result = state.map(currentHole => {
+        const result = state.scores.map(currentHole => {
             if(currentHole.hole === action.payload.hole) {
                 return {...currentHole, score: currentHole.score - 1};
             }
@@ -29,7 +37,7 @@ const scores = (state = [], action) => {
                 return currentHole;
             }
         });
-        return result;
+        return {...state, scores: result};
     } else {
         return state;
     }
