@@ -30,8 +30,7 @@ const scores = (state = [], action) => {
             }
         });
         return result;
-    }
-    else {
+    } else {
         return state;
     }
 }

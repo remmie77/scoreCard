@@ -51,17 +51,25 @@ class ScoreCardPage extends Component {
     this.props.dispatch(action);
   }
 
-  // sendMyScores = () => {
-  //   console.log('in send my scores');
-  //   Axios({
-  //     method: 'POST',
-  //     url: '/api/score/p1Score',
-  //     data: this.props.playerOne
-  //   }).then((response) => {
-  //     console.log(response.data);
-  //     //Axios post to round
-  //   })
-  // }
+  handleFinalMatchScoreSubmit = () => {
+    console.log('in send my scores');
+
+    let totalScore = 0;
+    this.props.playerOne.map((hole) => {
+      totalScore += hole.score;
+    })
+    console.log(totalScore);
+    const action = { type: 'ADD_SCORES' }
+    this.props.dispatch(action);
+    Axios({
+      method: 'POST',
+      url: '/api/score/p1Score',
+      data: totalScore
+    }).then((response) => {
+      console.log(response.data);
+      this.props.history.push('/tally');
+    })
+  }
 
   render() {
     let content = null;
@@ -108,7 +116,7 @@ class ScoreCardPage extends Component {
           <div>
             <button type="submit"
               className="submitScoresBTN"
-              onClick={this.handleSubmit}>
+              onClick={this.handleFinalMatchScoreSubmit}>
               ADD SCORE(S)
           </button>
           </div>

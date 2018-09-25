@@ -15,7 +15,7 @@ import PlayerCountPage from './components/PlayerCountPage/PlayerCountPage.js';
 import RulesPage from './components/RulesPage/RulesPage.js';
 import TipsPage from './components/TipsPage/TipsPage.js';
 import ScoreCardPage from './components/ScoreCardPage/ScoreCardPage.js';
-
+import PlayerWinPage from './components/PlayerWinPage/PlayerWinPage.js';
 
 
 import './styles/main.css';
@@ -57,6 +57,10 @@ const App = () => (
         <Route
           path="/score"
           component={ScoreCardPage}
+        />
+        <Route
+          path="/tally"
+          component={PlayerWinPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
