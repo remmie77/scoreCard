@@ -96,7 +96,7 @@ class ScoreCardPage extends Component {
         <Nav />
         {content}
         <div className="scoreInputsContainer">
-          <ul className="courseList">
+          <ul className="holeList">
             {this.props.playerOne.scores.map((hole, i) => {
               return (
                 <li key={i}>HOLE: {hole.hole}<br />
