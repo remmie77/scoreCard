@@ -7,8 +7,18 @@ const initialState = {
 
 const scoreTallyReducer = (state = initialState, action) => {
     if (action.type === 'P1_SCORE_TALLY') {
-        return {...state, player1finalscore: action.payload};
-    } else {
+        return { ...state, player1finalscore: action.payload };
+    }
+    else if (action.type === 'P2_SCORE_TALLY') {
+        return { ...state, player2finalscore: action.payload };
+    }
+    else if (action.type === 'P3_SCORE_TALLY') {
+        return { ...state, player3finalscore: action.payload };
+    }
+    else if (action.type === 'P4_SCORE_TALLY') {
+        return { ...state, player4finalscore: action.payload };
+    }
+    else {
         return state;
     }
 }
