@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 
 
 router.get('/', function (req, res) {
@@ -20,12 +17,20 @@ router.get('/', function (req, res) {
     });
 }); // END GET ROUTE
 
-// THIS IS FOR A GET ON MY SCORES FOR SPECIFIC HOLES ON A SPECIFIED COURSE
+// THIS IS A GET ON p1Score from round
 
-router.get('/score', function (req, res) {
-    console.log('In Get (holes-score) ');
-    //const
-})
+router.get('/p1score', function (req, res) {
+    console.log('In GET route');
+    // The query we want to run
+    const query = 'SELECT * FROM "round";';
+    pool.query(query).then((results) => {
+        console.log(results); // This is an object
+        res.send(results.rows); // result.rows is an Array of feedback
+    }).catch((error) => {
+        console.log('Error making GET', error);
+        res.sendStatus(500);
+    });
+}); // END GET ROUTE
 
 /**
  * POST route template

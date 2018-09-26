@@ -4,6 +4,7 @@ import login from './loginReducer';
 import course from './courseReducer';
 import playerOne from './playerOneReducer';
 import playerTwo from './playerTwoReducer';
+import scoreTallyReducer from './scoreTallyReducer';
 
 const store = combineReducers({
   user,
@@ -11,6 +12,7 @@ const store = combineReducers({
   course,
   playerOne,
   playerTwo,
+  scoreTallyReducer,
 });
 
 export default store;

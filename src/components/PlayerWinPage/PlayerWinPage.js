@@ -3,15 +3,22 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import Axios from 'axios';
 
 
 const mapStateToProps = state => ({
     user: state.user,
+    scoreTallyReducer: state.scoreTallyReducer
 });
 
+//this.props.scoreTallyReducer.player1finalscore will be my score
+
 class PlayerWinPage extends Component {
+
+    
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
+        this.getP1Scores();
     }
 
     componentDidUpdate() {
@@ -28,7 +35,22 @@ class PlayerWinPage extends Component {
         console.log('in handlePlayAgain');
         /////////clear all arrays in stores///////////
         this.props.history.push('/course');
-    } 
+    }
+
+    getP1Scores = () => {
+    Axios({
+        method: 'GET',
+        url: '/api/score/p1score',
+      }).then((response) => {
+        console.log('back from server with: ', response.data);
+        this.setState({
+            state: response.data,
+        })
+      }).catch((error) => {
+        console.log('error: ', error);
+        alert('there was an error getting the p1Score');
+      })
+    }
 
     render() {
         let content = null;
@@ -40,10 +62,10 @@ class PlayerWinPage extends Component {
                         id="welcome"
                     >
                         Hey, {this.props.user.userName}!
-          </h1>
+                    </h1>
                     <h2>
                         YOU WIN!!!
-          </h2>
+                    </h2>
                     {/* <p>Your ID is: {this.props.user.id}</p> */}
                 </div>
             );
@@ -54,7 +76,10 @@ class PlayerWinPage extends Component {
                 <Nav />
                 {content}
                 <div>
-                    <button>
+                    <p>
+                        {this.props.scoreTallyReducer.player1finalscore}
+                    </p>
+                    <button onClick={this.handlePlayAgain}>
                         PLAY AGAIN?
                     </button>
                     <button>

@@ -50,21 +50,25 @@ class ScoreCardPage extends Component {
     const action = { type: 'INCREMENT_P2_HOLE', payload: hole }
     this.props.dispatch(action);
   }
-
+  
   handleFinalMatchScoreSubmit = () => {
     console.log('in send my scores');
-    let totalScore = 0;
+    let totalP1Score = 0;
     this.props.playerOne.scores.map((hole) => {
-      totalScore += hole.score;
+      totalP1Score += hole.score;
     })
-    let roundPlayed = {my_score: totalScore, course_id: this.props.playerOne.course_id }
+    let roundPlayed = {my_score: totalP1Score, course_id: this.props.playerOne.course_id }
     console.log(roundPlayed);
+    this.props.dispatch({
+      payload: totalP1Score,
+      type: 'P1_SCORE_TALLY',
+    });
     Axios({
       method: 'POST',
       url: '/api/score/p1Score',
       data: roundPlayed
     }).then((response) => {
-      console.log(response.data);
+      console.log(response.data);      
       this.props.history.push('/tally');
     })
   }
@@ -80,8 +84,9 @@ class ScoreCardPage extends Component {
           >
             Score Card
           </h1>
-          {JSON.stringify(this.props.playerOne)}
-          {JSON.stringify(this.props.playerOne.name)}
+          {JSON.stringify(this.props.playerOne.scores)}
+          {/* {JSON.stringify(this.props.playerOne)} */}
+          {/* {JSON.stringify(this.props.playerOne.name)} */}
         </div>
       );
     }
@@ -116,7 +121,7 @@ class ScoreCardPage extends Component {
               className="submitScoresBTN"
               onClick={this.handleFinalMatchScoreSubmit}>
               ADD SCORE(S)
-          </button>
+            </button>
           </div>
         </div>
       </div>
