@@ -70,6 +70,9 @@ class ScoreCardPage extends Component {
     }).then((response) => {
       console.log(response.data);      
       this.props.history.push('/tally');
+    }).catch((error) => {
+      console.log('error: ', error);
+      alert('there was an error getting the courses');
     })
   }
 

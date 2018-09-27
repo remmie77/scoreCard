@@ -12,7 +12,20 @@ const mapStateToProps = state => ({
     course: state.course, //this.props.course
 });
 
+const myInfoFromCourse = {
+    stuff: [],
+}
+
 class MyInfoOnCoursePage extends Component {
+    constructor() {
+        super();
+
+        this.state = myInfoFromCourse;
+    }
+
+
+
+
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
         // this.getMyCourses();
@@ -28,20 +41,31 @@ class MyInfoOnCoursePage extends Component {
         this.props.dispatch(triggerLogout());
     }
 
-
-
-
-
-    //   goBackToCourse = () => {
-    //     console.log('get back');
-    //     this.props.history.push('/course');
-    //   }
+      goBackToCourse = () => {
+        console.log('get back');
+        this.props.history.push('/course');
+      }
 
     startPlaying = (course) => (event) => {
         console.log(course);
         const action = { type: 'START_PLAYING', payload: course };
         this.props.dispatch(action);
         this.props.history.push('/score');
+    }
+
+    getMyCourseInfo = () => {
+        console.log('in getMyCourseInfo');
+        Axios({
+            method: 'GET',
+            url: '/api/score/myInfoOnScore'
+        }).then((response) => {
+            this.setState({
+                stuff: response.data
+            })
+        }).catch((error) => {
+            console.log('error: ', error);
+            alert('there was an error getting the courses');
+        })
     }
 
 
@@ -67,11 +91,10 @@ class MyInfoOnCoursePage extends Component {
             <div>
                 <Nav />
                 {content}
-                
                 <h1>{this.props.match.params.id}</h1>
                 {/* below is my course id that I will be pulling info on */}
-                <li><button className="BTN" onClick={this.startPlaying(course)}>Play</button></li>
-                <li><button className="BTN" onClick={this.goBackToCourse()}>Back</button></li>
+                {/* <li><button className="BTN" onClick={this.startPlaying(this.props.course)}>Play</button></li> */}
+                <button className="BTN" onClick={this.goBackToCourse}>Back</button>
             </div>
         );
     }
