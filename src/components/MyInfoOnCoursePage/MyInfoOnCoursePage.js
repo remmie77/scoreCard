@@ -5,6 +5,7 @@ import Nav from '../Nav/Nav';
 import Axios from 'axios';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import moment from 'moment';
 
 
 const mapStateToProps = state => ({
@@ -28,7 +29,7 @@ class MyInfoOnCoursePage extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-        // this.getMyCourses();
+        this.getMyCourseInfo();
     }
 
     componentDidUpdate() {
@@ -41,10 +42,10 @@ class MyInfoOnCoursePage extends Component {
         this.props.dispatch(triggerLogout());
     }
 
-      goBackToCourse = () => {
+    goBackToCourse = () => {
         console.log('get back');
         this.props.history.push('/course');
-      }
+    }
 
     startPlaying = (course) => (event) => {
         console.log(course);
@@ -57,8 +58,9 @@ class MyInfoOnCoursePage extends Component {
         console.log('in getMyCourseInfo');
         Axios({
             method: 'GET',
-            url: '/api/score/myInfoOnScore'
+            url: `/api/score/myInfoOnScore/${this.props.match.params.id}`
         }).then((response) => {
+            console.log('back with: ', response.data);
             this.setState({
                 stuff: response.data
             })
@@ -86,12 +88,28 @@ class MyInfoOnCoursePage extends Component {
                 </div>
             );
         }
-
         return (
             <div>
                 <Nav />
                 {content}
+                <table className="myInfoTable">
+                    <tr>
+                        <th>course</th>
+                        <th>score</th>
+                        <th>date played</th>
+                    </tr>
+            {this.state.stuff.map((round, i) => {
+                        return (
+                            <tr key={i}>
+                                <td>{round.name}</td>
+                                <td>{round.my_score}</td>
+                                <td>{moment(round.timestamp).format('MM/DD/YYYY h:mm a')}</td>
+                            </tr>
+                        )
+                    })}
+                </table>
                 <h1>{this.props.match.params.id}</h1>
+                {JSON.stringify(this.state)}
                 {/* below is my course id that I will be pulling info on */}
                 {/* <li><button className="BTN" onClick={this.startPlaying(this.props.course)}>Play</button></li> */}
                 <button className="BTN" onClick={this.goBackToCourse}>Back</button>

@@ -32,6 +32,25 @@ router.get('/p1score', function (req, res) {
     });
 }); // END GET ROUTE
 
+router.get('/myInfoOnScore/:id', function (req, res) {
+    if (req.isAuthenticated()) {
+        console.log('In get myInfoOnScore');
+        const query = `SELECT "round"."my_score", "round"."timestamp", "course"."name" FROM "round"
+        JOIN "course" ON "course"."id" = "round"."course_id"
+        WHERE "course_id" = $1 AND "round"."user_id" = $2;`;
+        pool.query(query, [req.params.id, req.user.id]).then((results) => {
+            console.log(results);
+            res.send(results.rows);
+        }).catch((error) => {
+            console.log('error making /myInfoOnScore get', error);
+            res.sendStatus(500);
+        })
+    } else {
+        res.sendStatus(403);
+    }
+    
+})
+
 /**
  * POST route template
  */
