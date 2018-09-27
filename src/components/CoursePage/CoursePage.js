@@ -94,7 +94,7 @@ class CoursePage extends Component {
             )
           })}
           <li><button
-            class="BTN"
+            class="BTNbl"
             onClick={this.goToCreateCourse}
           >
             CREATE A COURSE

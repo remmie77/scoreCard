@@ -1,3 +1,11 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
@@ -155,10 +163,25 @@ li a:hover {
 .BTN {
     font-size: 27px;
     margin-bottom: 20px;
-
 }
 
 .BTN:hover {
     background-color: #af8137;
     color: white;
 }
+
+.BTNbl {
+    font-size: 27px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.BTNbl:hover {
+    background-color: #00acb0;
+    color: white;
+}
+
+
+table, th, td {
+    border: 1px solid #af8137;
+ }

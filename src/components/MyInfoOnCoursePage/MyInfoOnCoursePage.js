@@ -89,14 +89,15 @@ class MyInfoOnCoursePage extends Component {
             );
         }
         return (
-            <div>
+            <div className="pageContainer">
                 <Nav />
                 {content}
+                
                 <table className="myInfoTable">
                     <tr>
                         <th>course</th>
                         <th>score</th>
-                        <th>date played</th>
+                        <th>date and time played</th>
                     </tr>
             {this.state.stuff.map((round, i) => {
                         return (
@@ -108,11 +109,11 @@ class MyInfoOnCoursePage extends Component {
                         )
                     })}
                 </table>
-                <h1>{this.props.match.params.id}</h1>
-                {JSON.stringify(this.state)}
+                {/* <h1>{this.props.match.params.id}</h1> */}
+                {/* {JSON.stringify(this.state)} */}
                 {/* below is my course id that I will be pulling info on */}
                 {/* <li><button className="BTN" onClick={this.startPlaying(this.props.course)}>Play</button></li> */}
-                <button className="BTN" onClick={this.goBackToCourse}>Back</button>
+                <button className="BTNbl" onClick={this.goBackToCourse}>Back</button>
             </div>
         );
     }
