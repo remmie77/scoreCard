@@ -16,7 +16,7 @@ import RulesPage from './components/RulesPage/RulesPage.js';
 import TipsPage from './components/TipsPage/TipsPage.js';
 import ScoreCardPage from './components/ScoreCardPage/ScoreCardPage.js';
 import PlayerWinPage from './components/PlayerWinPage/PlayerWinPage.js';
-
+import MyInfoOnCoursePage from './components/MyInfoOnCoursePage/MyInfoOnCoursePage.js'
 
 import './styles/main.css';
 
@@ -61,6 +61,10 @@ const App = () => (
         <Route
           path="/tally"
           component={PlayerWinPage}
+        />
+        <Route
+          path="myInfoOnCourse"
+          component={MyInfoOnCoursePage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

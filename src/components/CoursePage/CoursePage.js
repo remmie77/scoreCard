@@ -58,6 +58,11 @@ class CoursePage extends Component {
     this.props.history.push('/score');
   }
 
+  getHistory = (course) => (event) => {
+    console.log('yayayayayayayay', course);
+    
+  }
+
   render() {
     let content = null;
 
@@ -81,8 +86,10 @@ class CoursePage extends Component {
         <ul className="courseList">
           {this.props.course.map((course, i) => {
             return (
-              <li key={i}>{course.name} {course.hole_quantity} 
-              <button onClick={this.startPlaying(course)}>Play</button></li>
+              <li key={i}>{course.name}<br />
+               {course.hole_quantity} Holes<br />
+              <button className="BTN" onClick={this.startPlaying(course)}>Play</button>
+              <button className="BTN" onClick={this.getHistory(course)}>History</button></li>
             )
           })}
           <li><button

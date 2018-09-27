@@ -151,3 +151,14 @@ li a:hover {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.BTN {
+    font-size: 27px;
+    margin-bottom: 20px;
+
+}
+
+.BTN:hover {
+    background-color: #af8137;
+    color: white;
+}
