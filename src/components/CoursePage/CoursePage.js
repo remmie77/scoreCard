@@ -60,7 +60,8 @@ class CoursePage extends Component {
 
   getHistory = (course) => (event) => {
     console.log('yayayayayayayay', course);
-    
+    // const action = {type: ''}
+    this.props.history.push(`/myInfoOnCourse/${course.id}`);
   }
 
   render() {
@@ -93,7 +94,7 @@ class CoursePage extends Component {
             )
           })}
           <li><button
-            class="course"
+            class="BTN"
             onClick={this.goToCreateCourse}
           >
             CREATE A COURSE

@@ -63,7 +63,7 @@ const App = () => (
           component={PlayerWinPage}
         />
         <Route
-          path="myInfoOnCourse"
+          path="/myInfoOnCourse/:id"
           component={MyInfoOnCoursePage}
         />
         {/* OTHERWISE (no path!) */}
