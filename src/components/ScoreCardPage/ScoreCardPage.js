@@ -87,7 +87,7 @@ class ScoreCardPage extends Component {
           >
             Score Card
           </h1>
-          {JSON.stringify(this.props.playerOne.scores)}
+          {/* {JSON.stringify(this.props.playerOne.scores)} */}
           {/* {JSON.stringify(this.props.playerOne)} */}
           {/* {JSON.stringify(this.props.playerOne.name)} */}
         </div>
